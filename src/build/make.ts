@@ -7,6 +7,7 @@ let release = process.argv.indexOf("release") !== -1;
 console.log("start Emscripten building");
 
 let unrarFiles: string[] = [
+  "cbr",
   "dll",
   "qopen",
 

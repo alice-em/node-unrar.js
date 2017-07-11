@@ -5,6 +5,7 @@ var shjs = require("shelljs");
 var release = process.argv.indexOf("release") !== -1;
 console.log("start Emscripten building");
 var unrarFiles = [
+    "cbr",
     "dll",
     "qopen",
     "rar",
