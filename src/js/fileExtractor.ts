@@ -34,12 +34,12 @@ export class FileExtractor extends Extractor {
     let dir = path.parse(fullpath).dir;
     dir
       .split("/")
-      .reduce((path, folder) => {
-        path += folder + "/";
-        if (!fs.existsSync(path)) {
-          fs.mkdirSync(path);
+      .reduce((PATH, folder) => {
+        PATH += folder + "/";
+        if (!fs.existsSync(PATH)) {
+          fs.mkdirSync(PATH);
         }
-        return path;
+        return PATH;
       }, "");
 
     let fd = fs.openSync(fullpath, "w");

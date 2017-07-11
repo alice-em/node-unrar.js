@@ -1,0 +1,79 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var shjs = require("shelljs");
+/* tslint:disable: no-console */
+var release = process.argv.indexOf("release") !== -1;
+console.log("start Emscripten building");
+var unrarFiles = [
+    "dll",
+    "qopen",
+    "rar",
+    "strlist",
+    "strfn",
+    "pathfn",
+    "smallfn",
+    "global",
+    // "file",
+    // "filefn",
+    "filcreat",
+    "archive",
+    "arcread",
+    "unicode",
+    "system",
+    "isnt",
+    "crypt",
+    "crc",
+    "rawread",
+    "encname",
+    "resource",
+    "match",
+    "timefn",
+    "rdwrfn",
+    "consio",
+    "options",
+    "errhnd",
+    "rarvm",
+    "secpassword",
+    "rijndael",
+    "getbits",
+    "sha1",
+    "sha256",
+    "blake2s",
+    "hash",
+    "extinfo",
+    "extract",
+    "volume",
+    "list",
+    // "find",
+    "unpack",
+    "headers",
+    "threadpool",
+    "rs16",
+    "cmddata",
+    "ui",
+];
+// unrarFiles = [];
+var extraFiles = [
+    "./src/cpp/bridge/bridge",
+    "./src/cpp/bridge/file",
+    "./src/cpp/bridge/filefn",
+    "./src/cpp/bridge/find",
+];
+// shjs.mkdir("dist/js");
+console.log("Compile unrar");
+shjs.exec([
+    "docker run --rm -v $(pwd):/src -t apiaryio/emcc:1.37 emcc",
+    "--bind",
+    "-Wno-switch -Wno-dangling-else -Wno-logical-op-parentheses",
+    "-DRARDLL",
+    "-std=c++14",
+    "-s ALLOW_MEMORY_GROWTH=1",
+    "-s DISABLE_EXCEPTION_CATCHING=0",
+    "--memory-init-file 0",
+    release ? "-O3" : "-g4",
+    "--js-library ./src/cpp/bridge/bridge.js",
+    "--pre-js ./src/cpp/bridge/preload.js",
+    "-o ./dist/js/unrar.js",
+    unrarFiles.map(function (file) { return "./src/cpp/unrar/" + file + ".cpp"; }).join(" "),
+    extraFiles.map(function (file) { return file + ".cpp"; }).join(" "),
+].join(" "));
