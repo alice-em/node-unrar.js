@@ -83799,6 +83799,12 @@ function abort(what) {
   throw output;
 }
 Module['abort'] = Module.abort = abort;
+Module['log'] = () => {
+  console.log(`var ENVIRONMENT_IS_WEB = ${ENVIRONMENT_IS_WEB};`)
+  console.log(`var ENVIRONMENT_IS_WORKER = ${ENVIRONMENT_IS_WORKER};`)
+  console.log(`var ENVIRONMENT_IS_NODE = ${ENVIRONMENT_IS_NODE};`)
+  console.log(`var ENVIRONMENT_IS_SHELL = ${ENVIRONMENT_IS_SHELL};`)
+}
 
 // {{PRE_RUN_ADDITIONS}}
 
