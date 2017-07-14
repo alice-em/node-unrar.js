@@ -67,7 +67,7 @@ var ENVIRONMENT_IS_SHELL = false;
 
 if (Module['ENVIRONMENT']) {
   if (Module['ENVIRONMENT'] === 'WEB') {
-    ENVIRONMENT_IS_WEB = true;
+    ENVIRONMENT_IS_WEB = false;
   } else if (Module['ENVIRONMENT'] === 'WORKER') {
     ENVIRONMENT_IS_WORKER = true;
   } else if (Module['ENVIRONMENT'] === 'NODE') {
@@ -78,9 +78,9 @@ if (Module['ENVIRONMENT']) {
     throw new Error('The provided Module[\'ENVIRONMENT\'] value is not valid. It must be one of: WEB|WORKER|NODE|SHELL.');
   }
 } else {
-  ENVIRONMENT_IS_WEB = typeof window === 'object';
+  ENVIRONMENT_IS_WEB = false;
   ENVIRONMENT_IS_WORKER = typeof importScripts === 'function';
-  ENVIRONMENT_IS_NODE = typeof process === 'object' && typeof require === 'function' && !ENVIRONMENT_IS_WEB && !ENVIRONMENT_IS_WORKER;
+  ENVIRONMENT_IS_NODE = typeof process === 'object' && typeof require === 'function' && !ENVIRONMENT_IS_WORKER;
   ENVIRONMENT_IS_SHELL = !ENVIRONMENT_IS_WEB && !ENVIRONMENT_IS_NODE && !ENVIRONMENT_IS_WORKER;
 }
 
@@ -93,6 +93,13 @@ if (ENVIRONMENT_IS_NODE) {
 
   var nodeFS;
   var nodePath;
+
+  Module['log'] = () => {
+    console.log(`var ENVIRONMENT_IS_WEB = ${ENVIRONMENT_IS_WEB};`)
+    console.log(`var ENVIRONMENT_IS_WORKER = ${ENVIRONMENT_IS_WORKER};`)
+    console.log(`var ENVIRONMENT_IS_NODE = ${ENVIRONMENT_IS_NODE};`)
+    console.log(`var ENVIRONMENT_IS_SHELL = ${ENVIRONMENT_IS_SHELL};`)
+  }
 
   Module['read'] = function shell_read(filename, binary) {
     if (!nodeFS) nodeFS = require('fs');
@@ -83799,12 +83806,7 @@ function abort(what) {
   throw output;
 }
 Module['abort'] = Module.abort = abort;
-Module['log'] = () => {
-  console.log(`var ENVIRONMENT_IS_WEB = ${ENVIRONMENT_IS_WEB};`)
-  console.log(`var ENVIRONMENT_IS_WORKER = ${ENVIRONMENT_IS_WORKER};`)
-  console.log(`var ENVIRONMENT_IS_NODE = ${ENVIRONMENT_IS_NODE};`)
-  console.log(`var ENVIRONMENT_IS_SHELL = ${ENVIRONMENT_IS_SHELL};`)
-}
+
 
 // {{PRE_RUN_ADDITIONS}}
 
