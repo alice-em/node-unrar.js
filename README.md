@@ -1,6 +1,6 @@
 node-unrar-js
 ======================
-[![Build Status](https://travis-ci.org/YuJianrong/node-unrar.js.svg?branch=master)](https://travis-ci.org/YuJianrong/node-unrar.js)
+[![Build Status](https://travis-ci.org/alice-em/node-unrar.js.svg?branch=master)](https://travis-ci.org/YuJianrong/node-unrar.js)
 [![npm version](https://badge.fury.io/js/node-unrar-js.svg)](https://badge.fury.io/js/node-unrar-js)
 [![MIT License](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 [![TypeScript](https://badges.frapsoft.com/typescript/code/typescript.svg?v=101)](https://www.typescriptlang.org/)
@@ -13,7 +13,7 @@ Installation
 You can install the module via ```npm```:
 
 ```bash
-npm install node-unrar-js
+npm install electron-unrar-js
 ```
 
 Features
@@ -52,7 +52,7 @@ API of the extractor
     * the result will be `null`.
   * When function call success
     * the state will be `{state: "SUCCESS"}`
-    * the result will be like: 
+    * the result will be like:
 ```js
 {
   arcHeader: {
@@ -73,12 +73,12 @@ API of the extractor
         encrypted: false,
         solid: false,
       },
-      method: "Storing", 
+      method: "Storing",
       name: "FileName",
       packSize: 0,
       time: "2017-04-03T10:41:42.000",
       unpSize: 0,
-      unpVer: "2.9", 
+      unpVer: "2.9",
     },
     // ...
   ]
@@ -90,7 +90,7 @@ API of the extractor
   Return: `[state, result]`
   * If function call failed, the response will be structed like return value above.
   * When function call success
-    * the result will be like: 
+    * the result will be like:
 ```js
 {
   arcHeader: {...} // Same as the arcHeader above
@@ -111,8 +111,8 @@ If extracted successful, the `extractedContent` will be `Uint8Array` object.
   * `files`: File path list to be extracted.
   * `password`: A different to main password may be set on these specific files.
 
-  Return: 
-  
+  Return:
+
   Same to the return value of `extractAll()`, the result will be stored in the same order of the input array `files`. If the specific file is not found in the archive, the `file` item of the `files` array will be `null`.
 
 
@@ -138,43 +138,17 @@ if (list[0].state === "SUCCESS") {
   list[1].arcHeader...
   list[1].files[0].fileHeader: ..
   if (list[1].files[0].extract[0].state === "SUCCESS") {
-    list[1].files[0].extract[1] // Uint8Array 
+    list[1].files[0].extract[1] // Uint8Array
   }
 }
 
 ```
-
-
-TypeScript
-----------------------
-This module is written in [TypeScript](https://www.typescriptlang.org/), you can import it directly in TypeScript and get the benefit of static type checking and auto-complete of IDE. 
-
-
-Development and Contribution
-----------------------
-If you want to compile the module by yourself, please follow the steps below:
-* Pull the docker image for Emscripten (Please install the [docker](https://www.docker.com/) at first)
-
-``` docker pull apiaryio/emcc ```
-* Download the c++ source of unRar library:
-
-``` npm run prepare ```
-* Build for debug:
-
-``` npm run buildDebug```
-* Build for release
-
-``` npm run buildRelease```
-* Run Test
-
-``` npm run test```
 
 ## License
 
 This module is licensed under MIT.
 
 #### Changelog
-0.8.0:
+1.0.0: Updated for Electron and Browser based Node apps
 
 * First release
-

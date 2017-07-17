@@ -1,5 +1,5 @@
 {
-  "name": "node-unrar-js",
+  "name": "electron-unrar-js",
   "version": "1.0.0",
   "description": "Recompiled for Electron or Browser-based use || Pure JavaScript RAR archive extractor by compile the official unrar lib by Emscripten",
   "homepage": "https://github.com/YuJianrong/node-unrar.js",
