@@ -1,11 +1,8 @@
 node-unrar-js
 ======================
-[![Build Status](https://travis-ci.org/alice-em/node-unrar.js.svg?branch=master)](https://travis-ci.org/YuJianrong/node-unrar.js)
-[![npm version](https://badge.fury.io/js/node-unrar-js.svg)](https://badge.fury.io/js/node-unrar-js)
 [![MIT License](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
-[![TypeScript](https://badges.frapsoft.com/typescript/code/typescript.svg?v=101)](https://www.typescriptlang.org/)
 
-`electron-unrar-js` is a fork of https://github.com/YuJianrong/node-unrar.js
+`electron-unrar-js` is a fork of https://github.com/YuJianrong/node-unrar.js || https://www.npmjs.com/package/node-unrar-js
 
 ```electron-unrar.js``` is a npm module to extract rar archive in pure JavaScript. It's combined by a Javascript adoption layer and JavaScript unRar library compiled by [Emscripten](http://emscripten.org/) from the [C++ unrar library](http://www.rarlab.com/rar/unrarsrc-5.4.5.tar.gz) from http://www.rarlab.com/rar_add.htm .
 
