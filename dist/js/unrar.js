@@ -68,6 +68,7 @@ var ENVIRONMENT_IS_SHELL = false;
 if (Module['ENVIRONMENT']) {
   if (Module['ENVIRONMENT'] === 'WEB') {
     ENVIRONMENT_IS_WEB = false;
+    ENVIRONMENT_IS_NODE = true;
   } else if (Module['ENVIRONMENT'] === 'WORKER') {
     ENVIRONMENT_IS_WORKER = true;
   } else if (Module['ENVIRONMENT'] === 'NODE') {
@@ -177,7 +178,7 @@ else if (ENVIRONMENT_IS_SHELL) {
   }
 
 }
-else if (ENVIRONMENT_IS_WEB || ENVIRONMENT_IS_WORKER) {
+else if (/* ENVIRONMENT_IS_WEB || */ENVIRONMENT_IS_WORKER) {
   Module['read'] = function shell_read(url) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, false);
@@ -83729,9 +83730,9 @@ function run(args) {
 
     preMain();
 
-    if (ENVIRONMENT_IS_WEB && preloadStartTime !== null) {
-      Module.printErr('pre-main prep time: ' + (Date.now() - preloadStartTime) + ' ms');
-    }
+    // if (ENVIRONMENT_IS_WEB && preloadStartTime !== null) {
+    //   Module.printErr('pre-main prep time: ' + (Date.now() - preloadStartTime) + ' ms');
+    // }
 
     if (Module['onRuntimeInitialized']) Module['onRuntimeInitialized']();
 
