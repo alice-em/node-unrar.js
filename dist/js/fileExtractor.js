@@ -41,7 +41,7 @@ var FileExtractor = (function (_super) {
             .reduce(function (PATH, folder) {
             PATH += folder + "/";
             if (!fs.existsSync(PATH)) {
-				mkdirp.sync(PATH);
+		mkdirp.sync(PATH);
                 //fs.mkdirSync(PATH);
             }
             return PATH;
