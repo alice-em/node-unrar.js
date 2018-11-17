@@ -16,7 +16,7 @@
   ],
   "author": "Jianrong Yu <yujianrong@gmail.com>",
   "license": "MIT",
-  "devDependencies": {}
+  "devDependencies": {},
   "dependencies": {
     "mkdirp": "0.5.1"
   }
