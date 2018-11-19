@@ -1,6 +1,6 @@
 {
   "name": "electron-unrar-js",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Recompiled for Electron or Browser-based use || Pure JavaScript RAR archive extractor by compile the official unrar lib by Emscripten",
   "homepage": "https://github.com/YuJianrong/node-unrar.js",
   "bugs": {
@@ -16,5 +16,8 @@
   ],
   "author": "Jianrong Yu <yujianrong@gmail.com>",
   "license": "MIT",
-  "devDependencies": {}
+  "devDependencies": {},
+  "dependencies": {
+    "mkdirp": "0.5.1"
+  }
 }

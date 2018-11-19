@@ -12,6 +12,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var fs = require("fs");
 var path = require("path");
+var mkdirp = require('mkdirp');
 var extractor_1 = require("./extractor");
 var unrar = require("./unrar");
 var FileExtractor = (function (_super) {
@@ -40,7 +41,8 @@ var FileExtractor = (function (_super) {
             .reduce(function (PATH, folder) {
             PATH += folder + "/";
             if (!fs.existsSync(PATH)) {
-                fs.mkdirSync(PATH);
+		mkdirp.sync(PATH);
+                //fs.mkdirSync(PATH);
             }
             return PATH;
         }, "");
